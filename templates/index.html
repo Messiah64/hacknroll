@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ESP32-CAM Stream</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { text-align: center; }
+        .stream { max-width: 640px; width: 100%; }
+    </style>
+    <script>
+        // Add auto-reload if stream fails
+        window.onload = function() {
+            var img = document.querySelector('.stream');
+            img.onerror = function() {
+                setTimeout(function() {
+                    img.src = img.src;
+                }, 1000);
+            };
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>ESP32-CAM Live Stream</h1>
+        <img src="{{ url_for('video_feed') }}" class="stream">
+        <p>Status: <span id="status">Connected</span></p>
+        <p>Frames received: <span id="frame-count">0</span></p>
+    </div>
+</body>
+</html>
+        
